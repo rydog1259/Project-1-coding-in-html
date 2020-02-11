@@ -1,0 +1,36 @@
+name: Jekyll site CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the site in the jekyll/builder container
+      run: |
+        docker run \
+        -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
+        jekyll/builder:latest /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
+# Project-1-coding-in-html
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<h1>This is a Heading</h1>
+<p>This is a paragraph.  In this paragraph <br> I am boing to have a break <br> </p>
+
+<h1> Form </h1>
+
+<form>
+  First name:<br>
+  <input type="text" name="Username"><br>
+  Last name:<br>
+  <input type="text" name="password">
+</form>
